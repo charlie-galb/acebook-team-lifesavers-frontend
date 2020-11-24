@@ -22,7 +22,7 @@ export class Registration extends Component {
   }
 
   handleSubmit(event) {
-    axios.post("https://localhost:3001/registrations");
+    axios.post("https://localhost:3001/registrations", {});
     event.preventDefault();
   }
 
