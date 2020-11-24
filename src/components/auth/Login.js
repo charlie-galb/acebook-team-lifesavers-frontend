@@ -22,24 +22,20 @@ export class Registration extends Component {
   }
 
   handleSubmit(event) {
-    const { name, email, password, password_confirmation } = this.state;
+    const { email, password } = this.state;
     axios
       .post(
-        "https://acebook-team-life-savers.herokuapp.com/users",
+        "http://localhost:3001/sessions",
         {
           user: {
-            name: name,
             email: email,
             password: password,
-            password_confirmation: password_confirmation,
           },
         },
         { withCredentials: true }
       )
       .then((response) => {
-        if (response.data.status === "created") {
-          this.props.handleSuccesfulAuth(response.data);
-        }
+        console.log("registration response", response);
       })
       .catch((error) => {
         console.log("registration error", error);
