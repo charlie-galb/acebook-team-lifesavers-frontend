@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import React, { Component } from 'react';
-import PostItem from './Postitem.js';
+import PostItem from './PostItem.js';
 import PropTypes from 'prop-types';
 
 class Posts extends Component {

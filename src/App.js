@@ -1,6 +1,9 @@
 import './App.css';
 import React, { Component } from 'react';
 import Posts from './components/Posts.js';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './components/Home.js';
+import Dashboard from './components/Dashboard.js'
 
 class App extends Component {
   state = {
@@ -22,6 +25,12 @@ class App extends Component {
   render(){
     return (
       <div className="App">
+        <BrowserRouter>
+        <Switch>
+          <Route exact path={"/"} component={Home} />
+          <Route exact path={"/dashboard"} component={Dashboard} />
+        </Switch>
+        </BrowserRouter>
         <Posts posts={this.state.posts}/>
       </div>
   );
