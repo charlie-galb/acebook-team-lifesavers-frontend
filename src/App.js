@@ -2,6 +2,7 @@ import "./App.css";
 import React, { Component } from "react";
 import Posts from "./components/Posts.js";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import axios from "axios";
 import Home from "./components/Home.js";
 import Dashboard from "./components/Dashboard.js";
 

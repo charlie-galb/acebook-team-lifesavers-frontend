@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export class Registration extends Component {
+export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
       email: "",
       password: "",
-      password_confirmation: "",
-      registrationErrors: "",
+      loginErrors: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +23,7 @@ export class Registration extends Component {
     const { email, password } = this.state;
     axios
       .post(
-        "http://localhost:3001/sessions",
+        "https://acebook-team-life-savers.herokuapp.com/sessions",
         {
           user: {
             email: email,
@@ -35,10 +33,12 @@ export class Registration extends Component {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log("registration response", response);
+        if (response.data.logged_in === true) {
+          this.props.handleSuccesfulAuth(response.data);
+        }
       })
       .catch((error) => {
-        console.log("registration error", error);
+        console.log("login error", error);
       });
     event.preventDefault();
   }
@@ -47,14 +47,6 @@ export class Registration extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input
-            type="name"
-            name="name"
-            placeholder="Name"
-            value={this.state.name}
-            onChange={this.handleChange}
-            required
-          />
           <input
             type="email"
             name="email"
@@ -71,19 +63,12 @@ export class Registration extends Component {
             onChange={this.handleChange}
             required
           />
-          <input
-            type="password"
-            name="password_confirmation"
-            placeholder="Password confirmation"
-            value={this.state.password_confirmation}
-            onChange={this.handleChange}
-            required
-          />
-          <button type="submit"> Register</button>
+
+          <button type="submit"> Login</button>
         </form>
       </div>
     );
   }
 }
 
-export default Registration;
+export default Login;
