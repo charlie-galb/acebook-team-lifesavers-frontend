@@ -38,14 +38,66 @@ export class Registration extends Component {
       )
       .then((response) => {
         if (response.data.status === "created") {
-          //this.props.handleSuccesfulAuth(response.data);
+          this.props.handleSuccesfulAuth(response.data);
         }
       })
       .catch((error) => {
-        //console.log("registration error", error);
+        console.log("registration error", error);
       });
-   //event.preventDefault();
+   event.preventDefault();
   }
+
+  // .then
+  // handleSubmit(event) {
+  //   const { name, email, password, password_confirmation } = this.state;
+  //   axios.post(
+  //       "http://localhost:3001/users",
+  //       {
+  //         user: {
+  //           name: name,
+  //           email: email,
+  //           password: password,
+  //           password_confirmation: password_confirmation,
+  //         },
+  //       },
+  //       { withCredentials: true }
+  //     )
+  //     .then((response) => {
+  //       if (response.data.status === "created") {
+  //         this.props.handleSuccesfulAuth(response.data);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log("registration error", error);
+  //     });
+  //   event.preventDefault();
+  // }
+
+  // async/await
+  // async handleSubmit(event) {
+  //   const { name, email, password, password_confirmation } = this.state;
+  //   try {
+  //     const response = await axios.post(
+  //         "http://localhost:3001/users",
+  //         {
+  //           user: {
+  //             name: name,
+  //             email: email,
+  //             password: password,
+  //             password_confirmation: password_confirmation,
+  //           },
+  //         },
+  //         { withCredentials: true }
+  //       );
+
+  //       if (response.data.status === "created") {
+  //         this.props.handleSuccesfulAuth(response.data);
+  //       }
+  //   } catch(error) {
+  //     console.log("registration error", error);
+  //   }
+  //   event.preventDefault();
+  // }
 
   render() {
     return (
