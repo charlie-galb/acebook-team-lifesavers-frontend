@@ -51,7 +51,7 @@ it('sends a post request', async () => {
     password_confirmation: "",
     registrationErrors: "",
   };
-  reg.handleSubmit()
+  //reg.handleSubmit()
 
   // expect axios to have been called with url, data from form, 3 param
   //expect(axios.post).toHaveBeenCalledWith(...);
@@ -65,6 +65,13 @@ it('sends a post request', async () => {
   //   }
   // }))
   //const response = new handleSubmit('/localhost::3001/users')
-  expect(axios.post).toHaveBeenCalledWith("http://localhost:3001/users", {"user": {"email": "", "name": "", "password": "", "password_confirmation": ""}}, {"withCredentials": true})
+  //expect(axios.post).toHaveBeenCalledWith("http://localhost:3001/users", {"user": {"email": "", "name": "", "password": "", "password_confirmation": ""}}, {"withCredentials": true})
   //expect(reg.props.handleSuccesfulAuth).toHaveBeenCalledWith("http://localhost:3001/users", {"user": {"email": "", "name": "", "password": "", "password_confirmation": ""}}, {"withCredentials": true})
+  try {
+    reg.handleSubmit();
+
+    expect(axios.post).toHaveBeenCalledWith("http://localhost:3001/users", {"user": {"email": "", "name": "", "password": "", "password_confirmation": ""}}, {"withCredentials": true})
+  } catch(error) {
+    throw error;
+  }  
 })
