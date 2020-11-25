@@ -70,7 +70,7 @@ it('sends a post request', async () => {
   try {
     reg.handleSubmit();
 
-    expect(axios.post).toHaveBeenCalledWith("http://localhost:3001/users", {"user": {"email": "", "name": "", "password": "", "password_confirmation": ""}}, {"withCredentials": true})
+    expect(axios.post).toHaveBeenCalledWith("https://acebook-team-life-savers.herokuapp.com/users", {"user": {"email": "", "name": "", "password": "", "password_confirmation": ""}}, {"withCredentials": true})
   } catch(error) {
     throw error;
   }  

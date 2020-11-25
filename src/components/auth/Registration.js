@@ -21,11 +21,11 @@ export class Registration extends Component {
     });
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     const { name, email, password, password_confirmation } = this.state;
-    await axios
+    axios
       .post(
-        "http://localhost:3001/users",
+        "https://acebook-team-life-savers.herokuapp.com/users",
         {
           user: {
             name: name,

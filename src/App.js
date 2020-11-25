@@ -7,22 +7,6 @@ import Home from "./components/Home.js";
 import Dashboard from "./components/Dashboard.js";
 
 class App extends Component {
-  // state = {
-  //   posts: [
-  //     {
-  //       id: 1,
-  //       message: "First post",
-  //       user_id: 1,
-  //       timestamp: "01.01.2020 01:01:01",
-  //     },
-  //     {
-  //       id: 2,
-  //       message: "Second post",
-  //       user_id: 2,
-  //       timestamp: "02.02.2020 02:02:02",
-  //     },
-  //   ],
-  // };
 
   constructor() {
     super();
@@ -33,8 +17,8 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  async checkLoginStatus() {
-    await axios.get("http://localhost:3001/logged_in", { withCredentials: true }).then(response =>{
+  checkLoginStatus() {
+    axios.get("https://acebook-team-life-savers.herokuapp.com/logged_in", { withCredentials: true }).then(response =>{
       if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
         this.setState({
           loggedInStatus: "LOGGED_IN",
