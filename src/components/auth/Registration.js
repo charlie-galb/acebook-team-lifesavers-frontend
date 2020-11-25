@@ -21,11 +21,11 @@ export class Registration extends Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     const { name, email, password, password_confirmation } = this.state;
-    axios
+    await axios
       .post(
-        "https://acebook-team-life-savers.herokuapp.com/users",
+        "http://localhost:3001/users",
         {
           user: {
             name: name,
@@ -38,13 +38,13 @@ export class Registration extends Component {
       )
       .then((response) => {
         if (response.data.status === "created") {
-          this.props.handleSuccesfulAuth(response.data);
+          //this.props.handleSuccesfulAuth(response.data);
         }
       })
       .catch((error) => {
-        console.log("registration error", error);
+        //console.log("registration error", error);
       });
-    event.preventDefault();
+   //event.preventDefault();
   }
 
   render() {
@@ -61,6 +61,7 @@ export class Registration extends Component {
           />
           <input
             type="email"
+            className="email-input"
             name="email"
             placeholder="Email"
             value={this.state.email}

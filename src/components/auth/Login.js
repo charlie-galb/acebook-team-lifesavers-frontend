@@ -19,11 +19,11 @@ export class Login extends Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     const { email, password } = this.state;
-    axios
+    await axios
       .post(
-        "https://acebook-team-life-savers.herokuapp.com/sessions",
+        "http://localhost:3001/sessions",
         {
           user: {
             email: email,
@@ -33,7 +33,9 @@ export class Login extends Component {
         { withCredentials: true }
       )
       .then((response) => {
+        console.log(response)
         if (response.data.logged_in === true) {
+          
           this.props.handleSuccesfulAuth(response.data);
         }
       })
