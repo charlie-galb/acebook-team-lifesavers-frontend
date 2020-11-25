@@ -17,8 +17,9 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  checkLoginStatus() {
-    axios.get("https://acebook-team-life-savers.herokuapp.com/logged_in", { withCredentials: true }).then(response =>{
+  async checkLoginStatus() {
+    const response = await axios.get("https://acebook-team-life-savers.herokuapp.com/logged_in", { withCredentials: true })
+    try {
       if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
         this.setState({
           loggedInStatus: "LOGGED_IN",
@@ -30,9 +31,9 @@ class App extends Component {
           user: {}
         })
       }
-    }).catch(error => {
+    } catch (error) {
       console.log("check login error", error);
-    });
+    }
   }
 
   componentDidMount() {

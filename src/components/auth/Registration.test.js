@@ -59,16 +59,16 @@ it('sends a post request', async () => {
 
   // expect mockCallback to have been called with ....
   
-  // await axios.post.mockImplementation(() => Promise.resolve({
+   //await axios.post.mockImplementation(() => Promise.resolve({
   //   data: {
-  //     status: created
+  //     status: "created"
   //   }
-  // }))
+  //}))
   //const response = new handleSubmit('/localhost::3001/users')
   //expect(axios.post).toHaveBeenCalledWith("http://localhost:3001/users", {"user": {"email": "", "name": "", "password": "", "password_confirmation": ""}}, {"withCredentials": true})
   //expect(reg.props.handleSuccesfulAuth).toHaveBeenCalledWith("http://localhost:3001/users", {"user": {"email": "", "name": "", "password": "", "password_confirmation": ""}}, {"withCredentials": true})
   try {
-    reg.handleSubmit();
+    await reg.handleSubmit({ preventDefault: () => {} });
 
     expect(axios.post).toHaveBeenCalledWith("https://acebook-team-life-savers.herokuapp.com/users", {"user": {"email": "", "name": "", "password": "", "password_confirmation": ""}}, {"withCredentials": true})
   } catch(error) {
