@@ -21,8 +21,7 @@ export class LogoutButton extends Component {
         }
       );
       if (response.data.status === "Logged out!") {
-        this.props.handleLogout();
-        this.props.history.push("/");
+        this.props.backToHome();
       }
     } catch (error) {
       console.log("logout error:", error);
