@@ -21,7 +21,7 @@ class Posts extends Component {
 }
 
 Posts.propTypes = {
-  posts: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
 };
 
 export default Posts;
