@@ -11,12 +11,17 @@ class Posts extends Component {
   // };
   render() {
     console.log(this.props.posts);
-    return this.props.posts.map((post) => <p>{post.message} {post.likes} {post.comments}</p>);
+
+    return this.props.posts.map((post) => (
+      <p>
+        {post.message} {post.likes} {post.comments}
+      </p>
+    ));
   }
 }
 
 Posts.propTypes = {
-  posts: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
 };
 
 export default Posts;
