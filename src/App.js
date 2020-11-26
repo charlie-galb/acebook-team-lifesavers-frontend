@@ -5,6 +5,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import Home from "./components/Home.js";
 import { useHistory } from "react-router-dom";
+import Timeline from "./components/Timeline.js";
+
 
 class App extends Component {
 
@@ -18,7 +20,6 @@ class App extends Component {
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
 
   async checkLoginStatus() {
@@ -81,6 +82,7 @@ class App extends Component {
       Authorization: "",
     })
     
+    
   }
 
   handleLogin(data) {
@@ -90,34 +92,10 @@ class App extends Component {
       Authorization: data.auth_token,
     });
   }
-  async handleLogoutClick() {
-    console.log(this.state.Authorization);
-    try {
-      const response = await axios.post(
-        "https://acebook-team-life-savers.herokuapp.com/log_out",
-        {
-          params: {},
-        },
-        {
-          headers: {
-            Authorization: this.state.Authorization,
-          },
-        }
-      );
-      if (response.data.status === "Logged out!") {
-        this.handleLogout();
-      }
-    } catch (error) {
-      console.log("logout error:", error);
-    }
-  }
 
   render() {
     return (
-      <div className="App">
-        <div>
-          <button onClick={() => this.handleLogoutClick()}> Logout </button>
-        </div>
+       <div className="App">
         <BrowserRouter>
           <Switch>
             <Route
@@ -135,9 +113,16 @@ class App extends Component {
             />
             <Route
               exact
-              path={"/posts"}
-              render={(props) => <Posts {...props} posts={this.state.posts} />}
-            />
+              path={"/timeline"}
+              render={(props) => (
+                <Timeline
+                {...props}
+                handleLogout={this.handleLogout}
+                posts={this.state.posts}
+                Authorization={this.state.Authorization}
+                />
+              )}
+              />
           </Switch>
         </BrowserRouter>
       </div>

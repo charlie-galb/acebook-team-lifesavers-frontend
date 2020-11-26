@@ -11,20 +11,9 @@ export class Home extends Component {
   }
   handleSuccesfulAuth(data) {
     this.props.handleLogin(data);
-    this.props.history.push("/posts");
+    this.props.history.push("/timeline");
   }
-  // async handleLogoutClick() {
-  //   try {
-  //     const response = await axios.post(
-  //       "https://acebook-team-life-savers.herokuapp.com/log_out"
-  //     );
-  //     if (response.data.status === "Logged out!") {
-  //       this.props.handleLogout();
-  //     }
-  //   } catch (error) {
-  //     console.log("logout error:", error);
-  //   }
-  // }
+  
   render() {
     return (
       <div>
