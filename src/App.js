@@ -7,7 +7,6 @@ import Home from "./components/Home.js";
 import Dashboard from "./components/Dashboard.js";
 
 class App extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -15,21 +14,31 @@ class App extends Component {
       user: {},
     };
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   async checkLoginStatus() {
-    const response = await axios.get("https://acebook-team-life-savers.herokuapp.com/logged_in", { withCredentials: true })
+    const response = await axios.get(
+      "https://acebook-team-life-savers.herokuapp.com/logged_in",
+      { withCredentials: true }
+    );
     try {
-      if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
+      if (
+        response.data.logged_in &&
+        this.state.loggedInStatus === "NOT_LOGGED_IN"
+      ) {
         this.setState({
           loggedInStatus: "LOGGED_IN",
-          user: response.data.user
-        })
-      } else if (!response.data.logged_in && this.state.loggedInStatus === "LOGGED_IN") {
+          user: response.data.user,
+        });
+      } else if (
+        !response.data.logged_in &&
+        this.state.loggedInStatus === "LOGGED_IN"
+      ) {
         this.setState({
           loggedInStatus: "NOT_LOGGED_IN",
-          user: {}
-        })
+          user: {},
+        });
       }
     } catch (error) {
       console.log("check login error", error);
@@ -38,6 +47,13 @@ class App extends Component {
 
   componentDidMount() {
     this.checkLoginStatus();
+  }
+
+  handleLogout() {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {},
+    });
   }
 
   handleLogin(data) {
@@ -59,6 +75,7 @@ class App extends Component {
                 <Home
                   {...props}
                   handleLogin={this.handleLogin}
+                  handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
                 />
               )}

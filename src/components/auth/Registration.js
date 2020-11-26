@@ -21,80 +21,27 @@ export class Registration extends Component {
     });
   }
 
-  //handleSubmit(event) {
-  //  const { name, email, password, password_confirmation } = this.state;
-  //  axios
-  //    .post(
-  //      "https://acebook-team-life-savers.herokuapp.com/users",
-   //     {
-   //       user: {
-   //         name: name,
-  //           email: email,
-  //           password: password,
-  //           password_confirmation: password_confirmation,
-  //         },
-  //       },
-  //       { withCredentials: true }
-  //     )
-  //     .then((response) => {
-  //       if (response.data.status === "created") {
-  //         this.props.handleSuccesfulAuth(response.data);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log("registration error", error);
-  //     });
-  //  event.preventDefault();
-  // }
-
-  // .then
-  // handleSubmit(event) {
-  //   const { name, email, password, password_confirmation } = this.state;
-  //   axios.post(
-  //       "http://localhost:3001/users",
-  //       {
-  //         user: {
-  //           name: name,
-  //           email: email,
-  //           password: password,
-  //           password_confirmation: password_confirmation,
-  //         },
-  //       },
-  //       { withCredentials: true }
-  //     )
-  //     .then((response) => {
-  //       if (response.data.status === "created") {
-  //         this.props.handleSuccesfulAuth(response.data);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log("registration error", error);
-  //     });
-  //   event.preventDefault();
-  // }
-
-  //async/await
   async handleSubmit(event) {
     event.preventDefault();
     const { name, email, password, password_confirmation } = this.state;
     try {
       const response = await axios.post(
-          "https://acebook-team-life-savers.herokuapp.com/users",
-          {
-            user: {
-              name: name,
-              email: email,
-              password: password,
-              password_confirmation: password_confirmation,
-            },
+        "https://acebook-team-life-savers.herokuapp.com/users",
+        {
+          user: {
+            name: name,
+            email: email,
+            password: password,
+            password_confirmation: password_confirmation,
           },
-          { withCredentials: true }
-        );
+        },
+        { withCredentials: true }
+      );
 
-        if (response.data.status === "created") {
-          this.props.handleSuccesfulAuth(response.data);
-        }
-    } catch(error) {
+      if (response.data.status === "created") {
+        this.props.handleSuccesfulAuth(response.data);
+      }
+    } catch (error) {
       console.log("registration error", error);
     }
   }
