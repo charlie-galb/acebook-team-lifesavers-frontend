@@ -16,6 +16,9 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
+  state = {
+    todos: [],
+  };
 
   async checkLoginStatus() {
     const response = await axios.get(
@@ -45,8 +48,13 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.checkLoginStatus();
+    axios
+      .get("https://acebook-team-life-savers.herokuapp.com/posts")
+      .then((response) => console.log(response.data)
+      // Posts.setState({ posts: response.data })
+      // (console.log(Posts.state))
   }
 
   handleLogout() {
@@ -82,7 +90,7 @@ class App extends Component {
             />
             <Route
               exact
-              path={"/dashboard"}
+              path={"/posts"}
               render={(props) => (
                 <Dashboard
                   {...props}
@@ -92,7 +100,6 @@ class App extends Component {
             />
           </Switch>
         </BrowserRouter>
-        {/* <Posts posts={this.state.posts} /> */}
       </div>
     );
   }

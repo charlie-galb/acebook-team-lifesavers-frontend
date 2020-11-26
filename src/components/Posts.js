@@ -1,8 +1,10 @@
+import { render } from "@testing-library/react";
 import React, { Component } from "react";
 import PostItem from "./PostItem.js";
 import PropTypes from "prop-types";
 
 class Posts extends Component {
+  state = { posts: [] };
   render() {
     return this.props.posts.map((post) => (
       <PostItem key={post.id} post={post} />
