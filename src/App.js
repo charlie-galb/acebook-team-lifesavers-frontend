@@ -12,13 +12,11 @@ class App extends Component {
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
+      posts: []
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
-  state = {
-    todos: [],
-  };
 
   async checkLoginStatus() {
     const response = await axios.get(
@@ -48,13 +46,26 @@ class App extends Component {
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.checkLoginStatus();
-    axios
-      .get("https://acebook-team-life-savers.herokuapp.com/posts")
-      .then((response) => console.log(response.data)
-      // Posts.setState({ posts: response.data })
-      // (console.log(Posts.state))
+    axios.get(
+      "https://acebook-team-life-savers.herokuapp.com/posts"
+      )
+      .then(
+        response => this.handlePosts(response.data),
+        )
+      // if (response.data === true) {
+      //   this.setState({posts: response.data}),
+      //   console.log(response.data),
+      // }
+  }
+
+  handlePosts(postObjectHash) {
+    this.setState({
+      posts: postObjectHash
+    })
+    console.log(postObjectHash)
+    console.log(this.state)
   }
 
   handleLogout() {
