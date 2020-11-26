@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Login } from "./auth/Login";
 import Registration from "./auth/Registration";
+import axios from "axios";
 
 export class Home extends Component {
   constructor(props) {
@@ -10,10 +11,16 @@ export class Home extends Component {
   }
   handleSuccesfulAuth(data) {
     this.props.handleLogin(data);
-    this.props.history.push("/dashboard");
+    this.props.history.push("/");
   }
   handleLogoutClick() {
-    this.props.handleLogout();
+    axios.post("https://acebook-team-life-savers.herokuapp.com/log_out", { withCredentials: true})
+    .then(response => {
+      this.props.handleLogout()
+    })
+    .catch(error => {
+      console.log("logout error:", error);
+    });
   }
   render() {
     return (

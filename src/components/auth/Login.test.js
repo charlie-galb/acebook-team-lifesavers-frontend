@@ -21,7 +21,7 @@ afterEach(() => {
   container = null;
 });
 
-it("renders reg form", function () {
+it("renders log in form", function () {
   act(() => {
     render(<Login />, container);
   });
@@ -30,14 +30,14 @@ it("renders reg form", function () {
 
 it("sends a post request", async () => {
   // const mockCallback = jest.fn();
-  const reg = new Login();
-  reg.state = {
+  const login = new Login();
+  login.state = {
     email: "",
     password: "",
   };
 
   try {
-    await reg.handleSubmit({ preventDefault: () => {} });
+    await login.handleSubmit({ preventDefault: () => {} });
     expect(axios.post).toHaveBeenCalledWith(
       "https://acebook-team-life-savers.herokuapp.com/sessions",
       {
