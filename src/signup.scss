@@ -3,15 +3,29 @@
   --input-padding-y: 0.75rem;
 }
 
+#sign-in-form {
+  padding-top: 5%;
+}
+
+#sign-up-form {
+  padding-top: 10%;
+}
+
 .login,
 .image {
   min-height: 100vh;
 }
 
+.header-logo {
+  height: 80%;
+  width: 80%;
+}
+
 .bg-image {
-  background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200');
+  background-image: url('./background.png');
   background-size: cover;
   background-position: center;
+  background-color: #dee7e3;
 }
 
 .login-heading {

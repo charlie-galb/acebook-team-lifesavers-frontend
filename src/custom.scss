@@ -1,13 +1,19 @@
 // Override default variables before the import
-$body-bg: #000;
+// $body-bg: #000;
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 @import 'signup.scss';
+
+// *{
+// outline: 1px solid red;
+// }
 
 html, body {
   height: 100%;
   font-family:verdana,arial,sans-serif;
   color:#555555;
+  margin:0;
+  padding:0;
 }
 
 .nav {
@@ -166,8 +172,11 @@ h1,h2,h3 {
 }
 
 .btn-primary,.label-primary,.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus  {
- background-color:#3B5999;
+ background-color:#497D66;
    color:#fffffe;
+}
+.btn-primary:hover {
+  background-color: #297a56;
 }
 .btn-default {
    color:#666666;
@@ -253,7 +262,7 @@ small.text-muted {
  }
 
  .navbar-blue {
- background-color:#3B5999;
+ background-color:#497D66;
    top:0;
    width:100%;
    position:relative;
