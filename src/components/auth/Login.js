@@ -19,10 +19,11 @@ export class Login extends Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
+    event.preventDefault();
     const { email, password } = this.state;
-    axios
-      .post(
+    try {
+      const response = await axios.post(
         "https://acebook-team-life-savers.herokuapp.com/sessions",
         {
           user: {
@@ -31,16 +32,13 @@ export class Login extends Component {
           },
         },
         { withCredentials: true }
-      )
-      .then((response) => {
-        if (response.data.status === "created") {
-          this.props.handleSuccesfulAuth(response.data);
-        }
-      })
-      .catch((error) => {
-        console.log("login error", error);
-      });
-    event.preventDefault();
+      );
+      if (response.data.status === "created") {
+        this.props.handleSuccesfulAuth(response.data);
+      }
+    } catch (error) {
+      console.log("login error", error);
+    }
   }
 
   render() {

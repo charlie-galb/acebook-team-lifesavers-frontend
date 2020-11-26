@@ -6,16 +6,21 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.handleSuccesfulAuth = this.handleSuccesfulAuth.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
   handleSuccesfulAuth(data) {
     this.props.handleLogin(data);
     this.props.history.push("/dashboard");
+  }
+  handleLogoutClick() {
+    this.props.handleLogout();
   }
   render() {
     return (
       <div>
         <h1>Home</h1>
         <h1>Status: {this.props.loggedInStatus}</h1>
+        <button onClick={() => this.handleLogoutClick()}> Logout </button>
         <Registration handleSuccesfulAuth={this.handleSuccesfulAuth} />
         <Login handleSuccesfulAuth={this.handleSuccesfulAuth} />
       </div>
