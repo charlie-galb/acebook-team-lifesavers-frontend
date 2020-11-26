@@ -13,14 +13,18 @@ export class Home extends Component {
     this.props.handleLogin(data);
     this.props.history.push("/");
   }
-  handleLogoutClick() {
-    axios.post("https://acebook-team-life-savers.herokuapp.com/log_out", { withCredentials: true})
-    .then(response => {
-      this.props.handleLogout()
-    })
-    .catch(error => {
+  async handleLogoutClick() {
+   try {
+    const response = await axios.post(
+      "https://acebook-team-life-savers.herokuapp.com/log_out",
+       { withCredentials: true}
+       );
+       if (response.data.status === "Logged out!"){
+        this.props.handleLogout();
+       }
+   } catch (error) {
       console.log("logout error:", error);
-    });
+    }
   }
   render() {
     return (
