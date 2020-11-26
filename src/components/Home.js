@@ -7,33 +7,24 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.handleSuccesfulAuth = this.handleSuccesfulAuth.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    // this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
   handleSuccesfulAuth(data) {
     this.props.handleLogin(data);
-    this.props.history.push("/");
+    this.props.history.push("/timeline");
   }
-  async handleLogoutClick() {
-   try {
-    const response = await axios.post(
-      "https://acebook-team-life-savers.herokuapp.com/log_out",
-       { withCredentials: true}
-       );
-       if (response.data.status === "Logged out!"){
-        this.props.handleLogout();
-       }
-   } catch (error) {
-      console.log("logout error:", error);
-    }
-  }
+  
   render() {
     return (
       <div>
         <h1>Home</h1>
         <h1>Status: {this.props.loggedInStatus}</h1>
-        <button onClick={() => this.handleLogoutClick()}> Logout </button>
+        {/* <button onClick={() => this.handleLogoutClick()}> Logout </button> */}
         <Registration handleSuccesfulAuth={this.handleSuccesfulAuth} />
-        <Login handleSuccesfulAuth={this.handleSuccesfulAuth} />
+        <Login
+          handleSuccesfulAuth={this.handleSuccesfulAuth}
+          Authorization={this.props.Authorization}
+        />
       </div>
     );
   }

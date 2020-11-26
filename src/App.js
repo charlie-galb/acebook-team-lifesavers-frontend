@@ -4,28 +4,29 @@ import Posts from "./components/Posts.js";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import Home from "./components/Home.js";
-import Dashboard from "./components/Dashboard.js";
+import { useHistory } from "react-router-dom";
+import Timeline from "./components/Timeline.js";
+
 
 class App extends Component {
+
   constructor() {
     super();
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
+      posts: [],
+      Authorization: "",
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
-  state = {
-    todos: [],
-  };
 
   async checkLoginStatus() {
-    const response = await axios.get(
-      "https://acebook-team-life-savers.herokuapp.com/logged_in",
-      { withCredentials: true }
-    );
     try {
+      const response = await axios.get(
+        "https://acebook-team-life-savers.herokuapp.com/logged_in",
+      );
       if (
         response.data.logged_in &&
         this.state.loggedInStatus === "NOT_LOGGED_IN"
@@ -50,30 +51,51 @@ class App extends Component {
 
   async componentDidMount() {
     this.checkLoginStatus();
-    axios
-      .get("https://acebook-team-life-savers.herokuapp.com/posts")
-      .then((response) => console.log(response.data)
-      // Posts.setState({ posts: response.data })
-      // (console.log(Posts.state))
+    if (this.state.loggedInStatus === "LOGGED_IN"){
+      await axios
+      .get("https://acebook-team-life-savers.herokuapp.com/posts",
+      {
+        params: {},
+      },
+      {
+        headers: {
+          Authorization: this.state.Authorization,
+        },
+      }
+      )
+      .then((response) => this.handlePosts(response.data));
+    }
+  }
+
+  handlePosts(postObjectArray) {
+    this.setState({
+      posts: postObjectArray,
+    });
+    // console.log(postObjectArray);
+    // console.log(this.state);
   }
 
   handleLogout() {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
-    });
+      Authorization: "",
+    })
+    
+    
   }
 
   handleLogin(data) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
       user: data.user,
+      Authorization: data.auth_token,
     });
   }
 
   render() {
     return (
-      <div className="App">
+       <div className="App">
         <BrowserRouter>
           <Switch>
             <Route
@@ -82,6 +104,7 @@ class App extends Component {
               render={(props) => (
                 <Home
                   {...props}
+                  Authorization={this.state.Authorization}
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
@@ -89,15 +112,16 @@ class App extends Component {
               )}
             />
             <Route
-              exact
-              path={"/posts"}
+              path={"/timeline"}
               render={(props) => (
-                <Dashboard
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
+                <Timeline
+                {...props}
+                handleLogout={this.handleLogout}
+                posts={this.state.posts}
+                Authorization={this.state.Authorization}
                 />
               )}
-            />
+              />
           </Switch>
         </BrowserRouter>
       </div>
