@@ -13,15 +13,16 @@ class App extends Component {
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
       posts: [],
-      Authorization: ""
+      Authorization: "",
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
 
   async checkLoginStatus() {
     const response = await axios.get(
-      "https://acebook-team-life-savers.herokuapp.com/logged_in",
+      "https://acebook-team-life-savers.herokuapp.com/logged_in"
     );
     try {
       if (
@@ -65,21 +66,46 @@ class App extends Component {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
-      Authorization: ""
+      Authorization: "",
     });
+    this.props.history.push("/");
   }
 
   handleLogin(data) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
       user: data.user,
-      Authorization: data.auth_token
+      Authorization: data.auth_token,
     });
+  }
+  async handleLogoutClick() {
+    console.log(this.state.Authorization);
+    try {
+      const response = await axios.post(
+        "https://acebook-team-life-savers.herokuapp.com/log_out",
+        {
+          params: {},
+        },
+        {
+          headers: {
+            Authorization: this.state.Authorization,
+          },
+        }
+      );
+      if (response.data.status === "Logged out!") {
+        this.handleLogout();
+      }
+    } catch (error) {
+      console.log("logout error:", error);
+    }
   }
 
   render() {
     return (
       <div className="App">
+        <div>
+          <button onClick={() => this.handleLogoutClick()}> Logout </button>
+        </div>
         <BrowserRouter>
           <Switch>
             <Route
