@@ -33,7 +33,7 @@ export class Home extends Component {
         <h1>Status: {this.props.loggedInStatus}</h1>
         <button onClick={() => this.handleLogoutClick()}> Logout </button>
         <Registration handleSuccesfulAuth={this.handleSuccesfulAuth} />
-        <Login handleSuccesfulAuth={this.handleSuccesfulAuth} />
+        <Login handleSuccesfulAuth={this.handleSuccesfulAuth} Authorization={this.props.Authorization}/>
       </div>
     );
   }

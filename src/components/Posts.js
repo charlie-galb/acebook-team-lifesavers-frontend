@@ -10,13 +10,8 @@ class Posts extends Component {
   //   likes: [],
   // };
   render() {
-    // this.setState({
-    //   posts: this.props.posts,
-    //   comments: this.props.comments,
-    //   likes: this.props.likes,
-    // });
     console.log(this.props.posts);
-    return this.props.posts.posts.map((post) => <p>{post.message}</p>);
+    return this.props.posts.map((post) => <p>{post.message} {post.likes} {post.comments}</p>);
   }
 }
 

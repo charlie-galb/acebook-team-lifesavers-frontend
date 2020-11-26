@@ -35,9 +35,8 @@ export class Registration extends Component {
             password_confirmation: password_confirmation,
           },
         },
-        { withCredentials: true }
       );
-
+        console.log(response.data)
       if (response.data.status === "created") {
         this.props.handleSuccesfulAuth(response.data);
       }

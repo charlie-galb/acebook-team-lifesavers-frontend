@@ -13,6 +13,7 @@ class App extends Component {
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
       posts: [],
+      Authorization: ""
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -21,7 +22,6 @@ class App extends Component {
   async checkLoginStatus() {
     const response = await axios.get(
       "https://acebook-team-life-savers.herokuapp.com/logged_in",
-      { withCredentials: true }
     );
     try {
       if (
@@ -53,18 +53,19 @@ class App extends Component {
       .then((response) => this.handlePosts(response.data));
   }
 
-  handlePosts(postObjectHash) {
+  handlePosts(postObjectArray) {
     this.setState({
-      posts: postObjectHash,
+      posts: postObjectArray,
     });
-    console.log(postObjectHash);
-    console.log(this.state);
+    // console.log(postObjectArray);
+    // console.log(this.state);
   }
 
   handleLogout() {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
+      Authorization: ""
     });
   }
 
@@ -72,6 +73,7 @@ class App extends Component {
     this.setState({
       loggedInStatus: "LOGGED_IN",
       user: data.user,
+      Authorization: data.auth_token
     });
   }
 
@@ -86,6 +88,7 @@ class App extends Component {
               render={(props) => (
                 <Home
                   {...props}
+                  Authorization={this.state.Authorization}
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}

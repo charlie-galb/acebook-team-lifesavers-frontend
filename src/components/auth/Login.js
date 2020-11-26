@@ -24,14 +24,16 @@ export class Login extends Component {
     const { email, password } = this.state;
     try {
       const response = await axios.post(
-        "https://acebook-team-life-savers.herokuapp.com/sessions",
+        "https://acebook-team-life-savers.herokuapp.com/authenticate",
         {
           user: {
             email: email,
             password: password,
           },
         },
-        { withCredentials: true }
+        {
+          headers: { Authorization: this.props.Authorization }
+        }
       );
       if (response.data.status === "created") {
         this.props.handleSuccesfulAuth(response.data);
