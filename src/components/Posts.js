@@ -4,16 +4,24 @@ import PostItem from "./PostItem.js";
 import PropTypes from "prop-types";
 
 class Posts extends Component {
-  state = { posts: [] };
+  // state = {
+  //   posts: [],
+  //   comments: [],
+  //   likes: [],
+  // };
   render() {
-    return this.props.posts.map((post) => (
-      <PostItem key={post.id} post={post} />
-    ));
+    // this.setState({
+    //   posts: this.props.posts,
+    //   comments: this.props.comments,
+    //   likes: this.props.likes,
+    // });
+    console.log(this.props.posts);
+    return this.props.posts.posts.map((post) => <p>{post.message}</p>);
   }
 }
 
 Posts.propTypes = {
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.object.isRequired,
 };
 
 export default Posts;

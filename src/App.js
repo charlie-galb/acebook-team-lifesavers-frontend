@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
-      posts: []
+      posts: [],
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -46,26 +46,19 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.checkLoginStatus();
-    axios.get(
-      "https://acebook-team-life-savers.herokuapp.com/posts"
-      )
-      .then(
-        response => this.handlePosts(response.data),
-        )
-      // if (response.data === true) {
-      //   this.setState({posts: response.data}),
-      //   console.log(response.data),
-      // }
+    await axios
+      .get("https://acebook-team-life-savers.herokuapp.com/posts")
+      .then((response) => this.handlePosts(response.data));
   }
 
   handlePosts(postObjectHash) {
     this.setState({
-      posts: postObjectHash
-    })
-    console.log(postObjectHash)
-    console.log(this.state)
+      posts: postObjectHash,
+    });
+    console.log(postObjectHash);
+    console.log(this.state);
   }
 
   handleLogout() {
@@ -102,12 +95,7 @@ class App extends Component {
             <Route
               exact
               path={"/posts"}
-              render={(props) => (
-                <Dashboard
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                />
-              )}
+              render={(props) => <Posts {...props} posts={this.state.posts} />}
             />
           </Switch>
         </BrowserRouter>
