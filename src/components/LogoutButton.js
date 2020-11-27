@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Text from 'react';
 import axios from 'axios';
 
 export class LogoutButton extends Component {
@@ -31,7 +32,7 @@ export class LogoutButton extends Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.handleLogoutClick()}> Logout </button>
+        <button class='log-out-button' onClick={() => this.handleLogoutClick()}> Log Out</button> 
       </div>
     )
   }
