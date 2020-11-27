@@ -53,11 +53,6 @@ export class Timeline extends Component {
             </ul>
           </div>
         </nav>
-
-          <div>
-            <Posts posts={this.props.posts} Authorization={this.props.Authorization} />
-          </div>
-
         <div>
           <NewPost
             updatePosts={this.props.updatePosts}
@@ -66,6 +61,10 @@ export class Timeline extends Component {
             user={this.props.user}
           />
         </div>
+          <div>
+            <Posts posts={this.props.posts} Authorization={this.props.Authorization} />
+          </div>
+
         {/* DIV FOR POSTS GOES HERE */}
         <div>
           <Posts
