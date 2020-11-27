@@ -25,25 +25,33 @@ it("renders log in form", function () {
   act(() => {
     render(<Login />, container);
   });
-  expect(container.textContent).toContain("Login");
+  expect(container.textContent).toMatch(/Email address/);
+  expect(container.textContent).toMatch(/Password/);
 });
 
 it("sends a post request", async () => {
-  // const mockCallback = jest.fn();
   const login = new Login();
   login.state = {
     email: "",
-    password: "",
+    password: ""
   };
+  login.props = jest.fn(function () {
+    return this;
+  })
 
+  const mockHandleSuccessfulAuth = jest
+    .spyOn(login.props, 'handleSuccessfulAuth')
+    .mockImplementation(() => jest.fn(function () {
+      return this;
+    }))
+  
   try {
-    await login.handleSubmit({ preventDefault: () => {} });
-    expect(axios.post).toHaveBeenCalledWith(
+    login.handleSubmit({ preventDefault: () => {} });
+    expect(mockHandleSuccessfulAuth).toHaveBeenCalledWith(
       "https://acebook-team-life-savers.herokuapp.com/sessions",
       {
         user: { email: "", password: "" },
       },
-      { withCredentials: true }
     );
   } catch (error) {
     throw error;

@@ -9,29 +9,36 @@ class Posts extends Component {
     super(props);
   }
 
-
   render() {
-    console.log(this.props.posts.posts)
-    if (this.props.posts.posts !== undefined){
+    //console.log(this.props.posts.posts)
+    if (this.props.posts.posts !== undefined) {
       return this.props.posts.posts.map((post, i) => (
-        <div class='posts'>
-          <div class='post'>
-            <div class='message'>
+        <div class="posts">
+          <div class="post">
+            <div class="message">
               {post.message}
+
               <p id='like-button'><button class='like-button'>{post.likes.length}</button></p>
               <div class='comments'>
                 {post.comments.map((comment) => <div class='comment'>{comment.comment_text}</div>)}
+
+              <button class="diamond-shape" id="like-button">
+                <div class="item-count">{post.likes.length}</div>
+              </button>
+              <div class="comments">
+                {post.comments.map((comment) => (
+                  <div class="comment">{comment.comment_text}</div>
+                ))}
+
               </div>
             </div>
           </div>
         </div>
-        
-      ))}
-    return <div></div>
+      ));
+    }
+    return <div></div>;
   }
-
 }
-
 
 // Posts.propTypes = {
 //   posts: PropTypes.object.isRequired,
@@ -48,7 +55,7 @@ export default Posts;
 //        <tr><td>{post.id}</td><td>{post.comments[0].comment_text}</td></tr>
 //        <tr><td>{post.id}</td><td>{post.likes.length}</td></tr>
 //         </table>
-      
+
 //     ))}
 //   return <div></div>
 // }
