@@ -7,9 +7,7 @@ import Home from "./components/Home.js";
 import { useHistory } from "react-router-dom";
 import Timeline from "./components/Timeline.js";
 
-
 class App extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -25,7 +23,7 @@ class App extends Component {
   async checkLoginStatus() {
     try {
       const response = await axios.get(
-        "https://acebook-team-life-savers.herokuapp.com/logged_in",
+        "https://acebook-team-life-savers.herokuapp.com/logged_in"
       );
       if (
         response.data.logged_in &&
@@ -67,11 +65,28 @@ class App extends Component {
   }
 
   handlePosts(postObjectArray) {
-    console.log(postObjectArray)
+    console.log(postObjectArray);
     this.setState({
       posts: postObjectArray,
     });
     console.log(this.state);
+  }
+
+  async updatePosts(token, handlePosts) {
+    await axios
+      .get(
+        "https://acebook-team-life-savers.herokuapp.com/posts",
+        // {
+        //   params: {},
+        // },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((response) => handlePosts(response.data))
+      .catch((error) => console.log(error));
   }
 
   handleLogout() {
@@ -79,9 +94,7 @@ class App extends Component {
       loggedInStatus: "NOT_LOGGED_IN",
       user: {},
       Authorization: "",
-    })
-    
-    
+    });
   }
 
   async handleLogin(data) {
@@ -90,24 +103,25 @@ class App extends Component {
       user: data.user,
       Authorization: data.auth_token,
     });
-      await axios
-      .get("https://acebook-team-life-savers.herokuapp.com/posts",
-      // {
-      //   params: {},
-      // },
-      {
-        headers: {
-          Authorization: this.state.Authorization,
-        },
-      }
+    await axios
+      .get(
+        "https://acebook-team-life-savers.herokuapp.com/posts",
+        // {
+        //   params: {},
+        // },
+        {
+          headers: {
+            Authorization: this.state.Authorization,
+          },
+        }
       )
       .then((response) => this.handlePosts(response.data))
-      .catch((error) => console.log(error))
+      .catch((error) => console.log(error));
   }
 
   render() {
     return (
-       <div className="App">
+      <div className="App">
         <BrowserRouter>
           <Switch>
             <Route
@@ -127,13 +141,15 @@ class App extends Component {
               path={"/timeline"}
               render={(props) => (
                 <Timeline
-                {...props}
-                handleLogout={this.handleLogout}
-                posts={this.state.posts}
-                Authorization={this.state.Authorization}
+                  {...props}
+                  handleLogout={this.handleLogout}
+                  posts={this.state.posts}
+                  Authorization={this.state.Authorization}
+                  updatePosts={this.updatePosts}
+                  handlePosts={this.handlePosts}
                 />
               )}
-              />
+            />
           </Switch>
         </BrowserRouter>
       </div>
