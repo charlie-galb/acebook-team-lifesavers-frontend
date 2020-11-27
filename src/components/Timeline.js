@@ -43,9 +43,6 @@ export class Timeline extends Component {
           </a>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              {/* <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li> */}
               <li class="nav-item log-out-button">
                 <LogoutButton
                   handleLogout={this.props.handleLogout}
@@ -56,6 +53,11 @@ export class Timeline extends Component {
             </ul>
           </div>
         </nav>
+
+          <div>
+            <Posts posts={this.props.posts} Authorization={this.props.Authorization} />
+          </div>
+
         <div>
           <NewPost
             updatePosts={this.props.updatePosts}
@@ -72,6 +74,7 @@ export class Timeline extends Component {
             handlePosts={this.props.handlePosts}
           />
         </div>
+
       </div>
     );
   }
