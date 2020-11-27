@@ -20,15 +20,7 @@ class Posts extends Component {
               {post.message}
               <button class='diamond-shape' id='like-button'><div class="item-count">{post.likes.length}</div></button>
               <div class='comments'>
-                <div class='comment'>
-                  {post.comments[i].comment_text}
-                </div>
-                <div class='comment'>
-                  Another comment
-                </div>
-                <div class='comment'>
-                  A third comment
-                </div>
+                {post.comments.map((comment) => <div class='comment'>{comment.comment_text}</div>)}
               </div>
             </div>
           </div>
