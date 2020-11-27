@@ -19,6 +19,7 @@ html, body {
 .posts {
   position: relative;
   margin-top: 3em;
+  margin-bottom: 3em;
 }
 .post {
   background-color: #f8f9fa;
@@ -29,16 +30,34 @@ html, body {
   border-radius: 1em 4em 1em 4em;
 }
 .comments {
-  padding-top: 2rem;
+  padding-top: 0.1rem;
 }
 .comment {
   text-align: left;
   margin-top: 1em;
   padding: 0.5em;
-  width: 60%;
+  width: 100%;
   background-color: #fdfdfd;
   border-radius: 1em;
 }
+#like-button{
+  padding-top: 2rem;
+}
+.like-button {
+  display: inline-block;
+  height: 2.25em;
+  width: 3em;
+  background-color:#497D66;
+  color:#fffffe;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  font-size: 0.8rem;
+}
+
+.like-button:hover {
+  background-color: #297a56;
+}
+
 
 // .timeline-logo{
 //   text-align: left;

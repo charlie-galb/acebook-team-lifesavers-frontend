@@ -26,16 +26,12 @@ export class Timeline extends Component {
           </a>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              {/* <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li> */}
               <li class="nav-item log-out-button">
                 <LogoutButton handleLogout={this.props.handleLogout} backToHome={this.backToHome} Authorization={this.props.Authorization} />
               </li>
             </ul>
           </div>
         </nav>
-        {/* DIV FOR POSTS GOES HERE */}
           <div>
             <Posts posts={this.props.posts} Authorization={this.props.Authorization} />
           </div>

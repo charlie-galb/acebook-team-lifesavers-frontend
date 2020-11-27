@@ -18,7 +18,7 @@ class Posts extends Component {
           <div class='post'>
             <div class='message'>
               {post.message}
-              <button class='diamond-shape' id='like-button'><div class="item-count">{post.likes.length}</div></button>
+              <p id='like-button'><button class='like-button'>{post.likes.length}</button></p>
               <div class='comments'>
                 {post.comments.map((comment) => <div class='comment'>{comment.comment_text}</div>)}
               </div>
