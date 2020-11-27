@@ -49,17 +49,17 @@ export class Login extends Component {
       <form onSubmit={this.handleSubmit}>
 
        
-        <div class="form-label-group">
-          <input type="email" name="email" id="inputEmail" class="form-control" placeholder="email" value={this.state.email} onChange={this.handleChange} required autofocus/>
-          <label for="inputEmail">Email address</label>
+        <div className="form-label-group">
+          <input type="email" name="email" id="inputEmail" className="form-control" placeholder="email" value={this.state.email} onChange={this.handleChange} required/>
+          <label htmlFor="inputEmail">Email address</label>
         </div>
 
-        <div class="form-label-group">
-          <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
-          <label for="inputPassword">Password</label>
+        <div className="form-label-group">
+          <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
+          <label htmlFor="inputPassword">Password</label>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Log In</button>
+        <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Log In</button>
       </form>
     );
   }

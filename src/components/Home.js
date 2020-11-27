@@ -17,16 +17,16 @@ export class Home extends Component {
   
   render() {
     return (
-      <div class="container-fluid">
-      <div class="row no-gutter">
-        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-        <div class="col-md-8 col-lg-6">
-          <div class="login d-flex align-items-center py-5">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-9 col-lg-8 mx-auto">
+      <div className="container-fluid">
+      <div className="row no-gutter">
+        <div className="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+        <div className="col-md-8 col-lg-6">
+          <div className="login d-flex align-items-center py-5">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-9 col-lg-8 mx-auto">
                 <div>
-                  <img src={logo} alt="acebook logo" class="header-logo"/>
+                  <img src={logo} alt="acebook logo" className="header-logo"/>
 		            </div>
                     <div id='sign-up-form'>
                       <Login handleSuccesfulAuth={this.handleSuccesfulAuth} Authorization={this.props.Authorization}/>

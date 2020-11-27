@@ -69,21 +69,21 @@ export class NewPost extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div class="float-center">
+        <div className="float-center">
           <input
             type="text"
             name="message"
             id="inputpost"
-            class="form-control"
+            className="form-control"
             placeholder="Please insert a post"
             value={this.state.message}
             onChange={this.handleChange}
             required
-            autofocus
+            autoFocus
           />
         </div>
         <button
-          class="btn btn-lg btn-primary btn-block inputpostbutton text-uppercase font-weight-bold mb-2 "
+          className="btn btn-lg btn-primary btn-block inputpostbutton text-uppercase font-weight-bold mb-2 "
           type="submit"
         ></button>
       </form>
