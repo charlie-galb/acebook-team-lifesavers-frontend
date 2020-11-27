@@ -4,24 +4,26 @@ import PostItem from "./PostItem.js";
 import PropTypes from "prop-types";
 
 class Posts extends Component {
-  // state = {
-  //   posts: [],
-  //   comments: [],
-  //   likes: [],
-  // };
-  render() {
-    console.log(this.props.posts);
+  constructor(props) {
+    super(props);
+  }
 
-    return this.props.posts.map((post) => (
-      <p>
-        {post.message} {post.likes} {post.comments}
-      </p>
-    ));
+  render() {
+    console.log(this.props.posts.posts)
+
+    if (this.props.posts.posts !== undefined){
+      return this.props.posts.posts.map((post) => (
+        // <table>
+        // <tr><td>{post.id}</td><td>{post.message}</td></tr>
+        //   </table>
+          <PostItem key={post.id} message={post.message}/>
+      ))}
+    return <div></div>
   }
 }
 
-Posts.propTypes = {
-  posts: PropTypes.array.isRequired,
-};
+// Posts.propTypes = {
+//   posts: PropTypes.object.isRequired,
+// };
 
 export default Posts;
