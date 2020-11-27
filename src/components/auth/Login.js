@@ -50,7 +50,7 @@ export class Login extends Component {
 
        
         <div className="form-label-group">
-          <input type="email" name="email" id="inputEmail" className="form-control" placeholder="email" value={this.state.email} onChange={this.handleChange} required autoFocus/>
+          <input type="email" name="email" id="inputEmail" className="form-control" placeholder="email" value={this.state.email} onChange={this.handleChange} required/>
           <label htmlFor="inputEmail">Email address</label>
         </div>
 
