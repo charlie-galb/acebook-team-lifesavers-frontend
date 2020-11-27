@@ -19,9 +19,9 @@ export class Timeline extends Component {
     console.log(this.props.user.id)
     return (
       <div>
-        <nav class="navbar navbar-expand-md navbar-light bg-light flex-column flex-md-row">
+        <nav className="navbar navbar-expand-md navbar-light bg-light flex-column flex-md-row">
           <button
-            class="navbar-toggler navbar-toggler-right"
+            className="navbar-toggler navbar-toggler-right"
             type="button"
             data-toggle="collapse"
             data-target="#navbarNavAltMarkup"
@@ -29,21 +29,21 @@ export class Timeline extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="#">
+          <a className="navbar-brand" href="#">
             <img
               src={logo}
               width="12%"
               height="12%"
-              class="d-inline-block align-top"
-              class="float-left"
+              className="d-inline-block align-top"
+              className="float-left"
               alt=""
             />
           </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item log-out-button">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item log-out-button">
                 <LogoutButton
                   handleLogout={this.props.handleLogout}
                   backToHome={this.backToHome}
