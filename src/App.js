@@ -50,29 +50,28 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.checkLoginStatus();
-    if (this.state.loggedInStatus === "LOGGED_IN"){
-      await axios
-      .get("https://acebook-team-life-savers.herokuapp.com/posts",
-      {
-        params: {},
-      },
-      {
-        headers: {
-          Authorization: this.state.Authorization,
-        },
-      }
-      )
-      .then((response) => this.handlePosts(response.data));
-    }
+    // this.checkLoginStatus();
+    // await axios
+    //   .get("https://acebook-team-life-savers.herokuapp.com/posts",
+    //   // {
+    //   //   params: {},
+    //   // },
+    //   {
+    //     headers: {
+    //       Authorization: this.state.Authorization,
+    //     },
+    //   }
+    //   )
+    //   .then((response) => this.handlePosts(response.data))
+    //   .catch((error) => console.log(error))
   }
 
   handlePosts(postObjectArray) {
+    console.log(postObjectArray)
     this.setState({
       posts: postObjectArray,
     });
-    // console.log(postObjectArray);
-    // console.log(this.state);
+    console.log(this.state);
   }
 
   handleLogout() {
@@ -85,12 +84,25 @@ class App extends Component {
     
   }
 
-  handleLogin(data) {
+  async handleLogin(data) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
       user: data.user,
       Authorization: data.auth_token,
     });
+      await axios
+      .get("https://acebook-team-life-savers.herokuapp.com/posts",
+      // {
+      //   params: {},
+      // },
+      {
+        headers: {
+          Authorization: this.state.Authorization,
+        },
+      }
+      )
+      .then((response) => this.handlePosts(response.data))
+      .catch((error) => console.log(error))
   }
 
   render() {

@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 export class PostItem extends Component {
   render() {
-    return (
-      <div>
-        <p>{ this.props.post.message }</p>
-      </div>
-    )
-  }
+    return <p>{this.props.message}</p>
+    
+    }
 }
+
 
 PostItem.propTypes = {
   post: PropTypes.object.isRequired
