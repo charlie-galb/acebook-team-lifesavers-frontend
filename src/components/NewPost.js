@@ -69,12 +69,12 @@ export class NewPost extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="float-center">
+        <div className="float-center post-form">
           <input
             type="text"
             name="message"
             id="inputpost"
-            className="form-control"
+            className="form-input"
             placeholder="Please insert a post"
             value={this.state.message}
             onChange={this.handleChange}
@@ -83,7 +83,7 @@ export class NewPost extends Component {
           />
         </div>
         <button
-          className="btn btn-lg btn-primary btn-block inputpostbutton text-uppercase font-weight-bold mb-2 "
+          className="inputpostbutton "
           type="submit"
         ></button>
       </form>
