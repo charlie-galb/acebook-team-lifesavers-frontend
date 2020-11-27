@@ -6,9 +6,11 @@ export class NewPost extends Component {
     super(props);
     this.state = {
       message: "",
+      user_id: this.props.user.id
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.updatePosts = this.updatePosts.bind(this);
   }
 
   handleChange(event) {
@@ -17,7 +19,26 @@ export class NewPost extends Component {
     });
   }
 
+  async updatePosts(token, handlePosts) {
+    console.log(this.props.user.id)
+    await axios
+      .get(
+        "https://acebook-team-life-savers.herokuapp.com/posts",
+        // {
+        //   params: {},
+        // },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((response) => handlePosts(response.data))
+      .catch((error) => console.log(error));
+  }
+
   async handleSubmit(event) {
+    console.log(this.props.user)
     event.preventDefault();
     const { user_id, message } = this.state;
     try {
@@ -34,10 +55,11 @@ export class NewPost extends Component {
         }
       );
       if (response.data.status === "created") {
-        this.props.updatePosts(
+        this.updatePosts(
           this.props.Authorization,
           this.props.handlePosts
         );
+        console.log(response.data)
       }
     } catch (error) {
       console.log("login error", error);

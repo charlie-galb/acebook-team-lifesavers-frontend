@@ -16,6 +16,7 @@ export class Timeline extends Component {
   }
 
   render() {
+    console.log(this.props.user.id)
     return (
       <div>
         <nav class="navbar navbar-expand-md navbar-light bg-light flex-column flex-md-row">
@@ -60,6 +61,7 @@ export class Timeline extends Component {
             updatePosts={this.props.updatePosts}
             Authorization={this.props.Authorization}
             handlePosts={this.props.handlePosts}
+            user={this.props.user}
           />
         </div>
         {/* DIV FOR POSTS GOES HERE */}
@@ -67,6 +69,7 @@ export class Timeline extends Component {
           <Posts
             posts={this.props.posts}
             Authorization={this.props.Authorization}
+            handlePosts={this.props.handlePosts}
           />
         </div>
       </div>

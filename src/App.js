@@ -18,6 +18,7 @@ class App extends Component {
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handlePosts = this.handlePosts.bind(this)
   }
 
   async checkLoginStatus() {
@@ -70,23 +71,6 @@ class App extends Component {
       posts: postObjectArray,
     });
     console.log(this.state);
-  }
-
-  async updatePosts(token, handlePosts) {
-    await axios
-      .get(
-        "https://acebook-team-life-savers.herokuapp.com/posts",
-        // {
-        //   params: {},
-        // },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      )
-      .then((response) => handlePosts(response.data))
-      .catch((error) => console.log(error));
   }
 
   handleLogout() {
@@ -145,6 +129,7 @@ class App extends Component {
                   handleLogout={this.handleLogout}
                   posts={this.state.posts}
                   Authorization={this.state.Authorization}
+                  user={this.state.user}
                   updatePosts={this.updatePosts}
                   handlePosts={this.handlePosts}
                 />
