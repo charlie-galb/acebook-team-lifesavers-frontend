@@ -69,7 +69,7 @@ export class NewPost extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div class="form-label-group">
+        <div class="float-center">
           <input
             type="text"
             name="message"
@@ -81,10 +81,9 @@ export class NewPost extends Component {
             required
             autofocus
           />
-          <label for="inputpost">Please insert your post</label>
         </div>
         <button
-          class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+          class="btn btn-lg btn-primary btn-block inputpostbutton text-uppercase font-weight-bold mb-2 "
           type="submit"
         ></button>
       </form>
