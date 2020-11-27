@@ -13,13 +13,13 @@ class Posts extends Component {
     console.log(this.props.posts.posts)
     if (this.props.posts.posts !== undefined){
       return this.props.posts.posts.map((post, i) => (
-        <div class='posts'>
-          <div class='post'>
-            <div class='message'>
+        <div className='posts'>
+          <div className='post'>
+            <div className='message'>
               {post.message}
               <p id='like-button'><button class='like-button'>{post.likes.length}</button></p>
-              <div class='comments'>
-                {post.comments.map((comment) => <div class='comment'>{comment.comment_text}</div>)}
+              <div className='comments'>
+                {post.comments.map((comment) => <div className='comment'>{comment.comment_text}</div>)}
               </div>
             </div>
           </div>
